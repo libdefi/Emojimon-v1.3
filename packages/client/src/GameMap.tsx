@@ -45,7 +45,7 @@ export const GameMap = ({
   }, [encounter]);
 
   return (
-    <div className="inline-grid p-2 bg-lime-500 relative overflow-hidden">
+    <div className="inline-grid p-2 bg-white relative overflow-hidden">
       {rows.map((y) =>
         columns.map((x) => {
           const terrainEmoji = terrain?.find(

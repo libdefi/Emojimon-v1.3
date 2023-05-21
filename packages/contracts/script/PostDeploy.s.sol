@@ -63,7 +63,7 @@ contract PostDeploy is Script {
         } else if (terrainType == TerrainType.TallGrass) {
           Position.set(world, entity, x, y);
           EncounterTrigger.set(world, entity, true);
-        }
+        } 
       }
     }
  
