@@ -38,8 +38,8 @@ const latticeTestChain: Chain = {
     },
   },
   blockExplorers: {
-    default: { name: 'SnowTrace', url: 'https://snowtrace.io' },
-    etherscan: { name: 'SnowTrace', url: 'https://snowtrace.io' },
+    default: { name: 'Otterscan', url: 'https://explorer.testnet-chain.linfra.xyz/' },
+    etherscan: { name: 'Otterscan', url: 'https://explorer.testnet-chain.linfra.xyz/' },
   },
   testnet: false,
 };
