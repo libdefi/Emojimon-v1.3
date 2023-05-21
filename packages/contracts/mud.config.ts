@@ -4,7 +4,7 @@ export default mudConfig({
   enums: {
     MonsterCatchResult: ["Missed", "Caught", "Fled"],
     MonsterType: ["None", "Eagle", "Rat", "Caterpillar"],
-    TerrainType: ["None", "TallGrass", "Boulder"],
+    TerrainType: ["None", "TallGrass", "Boulder", "Goal", "Start"],
   },
   tables: {
     Encounter: {

@@ -41,7 +41,7 @@ const latticeTestChain: Chain = {
     default: { name: 'Otterscan', url: 'https://explorer.testnet-chain.linfra.xyz/' },
     etherscan: { name: 'Otterscan', url: 'https://explorer.testnet-chain.linfra.xyz/' },
   },
-  testnet: false,
+  testnet: true,
 };
 
 const { publicClient, chains } = configureChains(

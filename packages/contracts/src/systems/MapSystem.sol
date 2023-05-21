@@ -16,11 +16,11 @@ contract MapSystem is System {
     x = (x + width) % width;
     y = (y + height) % height;
  
-    bytes32 position = positionToEntityKey(x, y);
+    bytes32 position = positionToEntityKey(0, 19);
     require(!Obstruction.get(position), "this space is obstructed");
  
     Player.set(player, true);
-    Position.set(player, x, y);
+    Position.set(player, 0, 19);
     Movable.set(player, true);
     Encounterable.set(player, true);
   }
