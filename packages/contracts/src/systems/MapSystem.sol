@@ -50,6 +50,11 @@ contract MapSystem is System {
         startEncounter(player);
       }
     }
+
+    // Allolist logic
+    if (x == 19 && y == 0) {
+        // Perform Allowlist operation here
+    }
   }
  
   function distance(uint32 fromX, uint32 fromY, uint32 toX, uint32 toY) internal pure returns (uint32) {

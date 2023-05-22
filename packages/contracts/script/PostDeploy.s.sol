@@ -7,15 +7,24 @@ import { IWorld } from "../src/codegen/world/IWorld.sol";
 import { EncounterTrigger, MapConfig, Obstruction, Position } from "../src/codegen/Tables.sol";
 import { TerrainType } from "../src/codegen/Types.sol";
 import { positionToEntityKey } from "../src/positionToEntityKey.sol";
- 
+import { RewardNFT } from "../src/RewardNFT.sol";
+
 contract PostDeploy is Script {
   function run(address worldAddress) external {
-    console.log("Deployed world: ", worldAddress);
-    IWorld world = IWorld(worldAddress);
- 
+    console.log("@@Deployed world: ", worldAddress);
+    IWorld world = IWorld(worldAddress); 
+    RewardNFT rewardNFT = new RewardNFT();
+    address rewardNFTAddress = address(rewardNFT);
+    console.log("@@rewardNFTAddress: ", rewardNFTAddress);
+    rewardNFT.mint(worldAddress); // ERC721トークンをmsg.senderに作成
+
     uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
     vm.startBroadcast(deployerPrivateKey);
- 
+    runNext(world);
+    vm.stopBroadcast();
+  }
+
+  function runNext(IWorld world) internal {
     TerrainType O = TerrainType.None;
     TerrainType T = TerrainType.TallGrass;
     TerrainType B = TerrainType.Boulder;
@@ -68,7 +77,5 @@ contract PostDeploy is Script {
     }
  
     MapConfig.set(world, width, height, terrain);
- 
-    vm.stopBroadcast();
   }
 }
