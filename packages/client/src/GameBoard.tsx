@@ -5,7 +5,7 @@ import { useKeyboardMovement } from "./useKeyboardMovement";
 import { hexToArray } from "@latticexyz/utils";
 import { TerrainType, terrainTypes } from "./terrainTypes";
 import { EncounterScreen } from "./EncounterScreen";
-import { Entity, Has, getComponentValueStrict } from "@latticexyz/recs";
+import { runQuery, HasValue, Entity, Has, getComponentValueStrict } from "@latticexyz/recs";
 import { MonsterType, monsterTypes } from "./monsterTypes";
  
 export const GameBoard = () => {
@@ -16,6 +16,12 @@ export const GameBoard = () => {
     network: { playerEntity, singletonEntity },
     systemCalls: { spawn },
   } = useMUD();
+  
+  // Able to determine if the goal has been achieved.
+  const matchingEntities = runQuery([
+    HasValue(Position, {x: 19, y: 0})
+  ])
+  console.log("@@@matchingEntities=", matchingEntities)
  
   const canSpawn = useComponentValue(Player, playerEntity)?.value !== true;
  
