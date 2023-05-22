@@ -16,7 +16,7 @@ contract PostDeploy is Script {
     RewardNFT rewardNFT = new RewardNFT();
     address rewardNFTAddress = address(rewardNFT);
     console.log("@@rewardNFTAddress: ", rewardNFTAddress);
-    rewardNFT.mint(worldAddress); // ERC721トークンをmsg.senderに作成
+    rewardNFT.mint(worldAddress); 
 
     uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
     vm.startBroadcast(deployerPrivateKey);
