@@ -131,7 +131,7 @@ export function createSystemCalls(
   };
 
   const rewardMint = async () => {
-    const tx = await worldSend("rewardMint", []);
+    const tx = await worldSend("rewardMint", [{ gasLimit: 10000000 }]);
     await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
   };
 
@@ -146,5 +146,7 @@ export function createSystemCalls(
     spawn,
     throwBall,
     fleeEncounter,
+    rewardMint,
+    rewardListedCheck,
   };
 }
