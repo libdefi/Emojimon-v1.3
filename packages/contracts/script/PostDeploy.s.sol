@@ -1,25 +1,25 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0;
- 
 import { Script } from "forge-std/Script.sol";
 import { console } from "forge-std/console.sol";
 import { IWorld } from "../src/codegen/world/IWorld.sol";
-import { EncounterTrigger, MapConfig, Obstruction, Position } from "../src/codegen/Tables.sol";
+import { EncounterTrigger, MapConfig, Obstruction, Position, Reward} from "../src/codegen/Tables.sol";
 import { TerrainType } from "../src/codegen/Types.sol";
 import { positionToEntityKey } from "../src/positionToEntityKey.sol";
 import { RewardNFT } from "../src/RewardNFT.sol";
+import { addressToEntityKey } from "../src/addressToEntityKey.sol";
 
 contract PostDeploy is Script {
   function run(address worldAddress) external {
-    console.log("@@Deployed world: ", worldAddress);
     IWorld world = IWorld(worldAddress); 
-    RewardNFT rewardNFT = new RewardNFT();
-    address rewardNFTAddress = address(rewardNFT);
-    console.log("@@rewardNFTAddress: ", rewardNFTAddress);
-    rewardNFT.mint(worldAddress); 
-
     uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
     vm.startBroadcast(deployerPrivateKey);
+    
+    RewardNFT rewardNFT = new RewardNFT("RewardNFT", "RNT");
+    address rewardNFTAddress = address(rewardNFT);
+    bytes32 worldKey= addressToEntityKey(address(worldAddress));
+    Reward.set(world, worldKey, rewardNFTAddress);
+    
     runNext(world);
     vm.stopBroadcast();
   }

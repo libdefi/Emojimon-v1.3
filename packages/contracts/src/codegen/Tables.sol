@@ -13,4 +13,5 @@ import { Movable, MovableTableId } from "./tables/Movable.sol";
 import { Obstruction, ObstructionTableId } from "./tables/Obstruction.sol";
 import { OwnedBy, OwnedByTableId } from "./tables/OwnedBy.sol";
 import { Player, PlayerTableId } from "./tables/Player.sol";
+import { Reward, RewardTableId } from "./tables/Reward.sol";
 import { Position, PositionTableId } from "./tables/Position.sol";

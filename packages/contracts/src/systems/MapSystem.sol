@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0;
 import { System } from "@latticexyz/world/src/System.sol";
-import { Encounter, EncounterData, Encounterable, EncounterTrigger, MapConfig, Monster, Movable, Obstruction, Player, Position } from "../codegen/Tables.sol";
+import { Encounter, EncounterData, Encounterable, EncounterTrigger, MapConfig, Monster, Movable, Obstruction, Player, Position, Reward } from "../codegen/Tables.sol";
 import { MonsterType } from "../codegen/Types.sol";
 import { addressToEntityKey } from "../addressToEntityKey.sol";
 import { positionToEntityKey } from "../positionToEntityKey.sol";
- 
+import { addressToEntityKey } from "../../src/addressToEntityKey.sol";
+import { RewardNFT } from "../../src/RewardNFT.sol";
+
 contract MapSystem is System {
   function spawn(uint32 x, uint32 y) public {
     bytes32 player = addressToEntityKey(address(_msgSender()));
@@ -51,9 +53,10 @@ contract MapSystem is System {
       }
     }
 
-    // Allolist logic
     if (x == 19 && y == 0) {
-        // Perform Allowlist operation here
+        address rewardNftAddress = Reward.get(addressToEntityKey(address(_world())));
+        RewardNFT RewardContract = RewardNFT(rewardNftAddress);
+        RewardContract.addToAllowList(address(_msgSender()));
     }
   }
  
