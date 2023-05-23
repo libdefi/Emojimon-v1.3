@@ -7,26 +7,29 @@ import { TerrainType, terrainTypes } from "./terrainTypes";
 import { EncounterScreen } from "./EncounterScreen";
 import { runQuery, HasValue, Entity, Has, getComponentValueStrict } from "@latticexyz/recs";
 import { MonsterType, monsterTypes } from "./monsterTypes";
- 
+import { toast } from "react-toastify";
+
 export const GameBoard = () => {
   useKeyboardMovement();
  
   const {
     components: { Encounter, MapConfig, Monster, Player, Position },
     network: { playerEntity, singletonEntity },
-    systemCalls: { spawn },
+    systemCalls: { spawn, rewardMint, rewardListedCheck },
   } = useMUD();
   
   // Able to determine if the goal has been achieved.
   const matchingEntities = runQuery([
     HasValue(Position, {x: 19, y: 0})
   ])
+  
   console.log("@@@matchingEntities=", matchingEntities)
  
   const canSpawn = useComponentValue(Player, playerEntity)?.value !== true;
  
   const players = useEntityQuery([Has(Player), Has(Position)]).map((entity) => {
     const position = getComponentValueStrict(Position, entity);
+    
     return {
       entity,
       x: position.x,
@@ -55,17 +58,37 @@ export const GameBoard = () => {
   const monster = monsterType != null && monsterType in MonsterType ? monsterTypes[monsterType as MonsterType] : null;
  
   return (
-    <GameMap
-      width={width}
-      height={height}
-      terrain={terrain}
-      onTileClick={canSpawn ? spawn : undefined}
-      players={players}
-      encounter={
-        encounter ? (
-          <EncounterScreen monsterName={monster?.name ?? "MissingNo"} monsterEmoji={monster?.emoji ?? "💱"} />
-        ) : undefined
-      }
-    />
+    <div>
+      <GameMap
+        width={width}
+        height={height}
+        terrain={terrain}
+        onTileClick={canSpawn ? spawn : undefined}
+        players={players}
+        encounter={
+          encounter ? (
+            <EncounterScreen monsterName={monster?.name ?? "MissingNo"} monsterEmoji={monster?.emoji ?? "💱"} />
+          ) : undefined
+        }
+      />
+      <button
+        type="button"
+        className="bg-blue-600 hover:ring rounded-lg px-4 py-2 w-full"
+        onClick={async () => {
+          const toastId = toast.loading("Running away…");
+          await rewardMint();
+          toast.update(toastId, {
+            isLoading: false,
+            type: "default",
+            render: `You ran away!`,
+            autoClose: 5000,
+            closeButton: true,
+          });
+        }}
+      >
+        Got a crawn, Reward Mint (ERC721)
+      </button>
+
+    </div>
   );
 };
