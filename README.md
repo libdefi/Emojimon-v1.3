@@ -1,5 +1,5 @@
 # Emojimon v1.3
-![Screenshot 2023-05-23 at 23 08 52](https://github.com/libdefi/Emojimon-v1.3/assets/8872443/5c3e0e32-5f59-4329-b493-6bec02810049)
+![Screenshot 2023-05-23 at 23 25 43](https://github.com/libdefi/Emojimon-v1.3/assets/8872443/e7143144-803b-427d-814e-36b1b5ed8de0)
 
 Emojimon is a very friendly tutorial for new MUD users. I thought it would be nice to make Emojimon more interesting, so I implemented Emojimon v1.3. v2.0 was not made because it is not yet ready to be fully interesting, and I promise to update it to v2.0 when I do that.
 
