@@ -1,5 +1,5 @@
 import { mudConfig } from "@latticexyz/world/register";
- 
+
 export default mudConfig({
   enums: {
     MonsterCatchResult: ["Missed", "Caught", "Fled"],
@@ -43,6 +43,7 @@ export default mudConfig({
     Obstruction: "bool",
     OwnedBy: "bytes32",
     Player: "bool",
+    Reward: "address",
     Position: {
       dataStruct: false,
       schema: {
