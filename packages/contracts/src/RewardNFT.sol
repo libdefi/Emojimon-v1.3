@@ -13,8 +13,8 @@ contract RewardNFT is ERC721, Ownable {
         allowList[user] = true;
     }
 
-    function isInAllowList() public view returns (bool) {
-        return allowList[msg.sender];
+    function isInAllowList(address from) public view returns (bool) {
+        return allowList[from];
     }
 
     function mint(address to, uint256 tokenId) public {

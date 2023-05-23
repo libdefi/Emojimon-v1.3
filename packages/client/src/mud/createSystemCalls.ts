@@ -129,6 +129,16 @@ export function createSystemCalls(
     const tx = await worldSend("flee", []);
     await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
   };
+
+  const rewardMint = async () => {
+    const tx = await worldSend("rewardMint", []);
+    await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
+  };
+
+  const rewardListedCheck = async () => {
+    const tx = await worldSend("rewardListedCheck", []);
+    await awaitStreamValue(txReduced$, (txHash) => txHash === tx.hash);
+  };
  
   return {
     moveTo,
