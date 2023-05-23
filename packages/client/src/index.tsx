@@ -78,9 +78,9 @@ setup().then((result) => {
     <MUDProvider value={result}>
       <WagmiConfig config={wagmiConfig}>
         <RainbowKitProvider chains={chains}>
-          <div className="mt-auto">
+          {/* <div className="mt-auto">
             <ConnectButton />
-          </div>
+          </div> */}
           
           <App />
           <ToastContainer position="bottom-right" draggable={false} theme="dark" />
