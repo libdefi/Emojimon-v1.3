@@ -1,4 +1,4 @@
-# Emojimon v1.5
+# Emojimon v1.3
 
 Emojimon is a very friendly tutorial for new MUD users. I thought it would be nice to make Emojimon more interesting, so I implemented Emojimon v1.5. v2.0 was not made because it is not yet ready to be fully interesting, and I promise to update it to v2.0 when I do that.
 
