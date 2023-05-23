@@ -73,7 +73,7 @@ export const GameBoard = () => {
       />
       <button
         type="button"
-        className="bg-stone-800 hover:ring rounded-lg px-4 py-2 w-full"
+        className="bg-blue-600 hover:ring rounded-lg px-4 py-2 w-full"
         onClick={async () => {
           const toastId = toast.loading("Running away…");
           await rewardMint();
