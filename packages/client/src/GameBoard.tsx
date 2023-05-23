@@ -22,12 +22,14 @@ export const GameBoard = () => {
   const matchingEntities = runQuery([
     HasValue(Position, {x: 19, y: 0})
   ])
+  
   console.log("@@@matchingEntities=", matchingEntities)
  
   const canSpawn = useComponentValue(Player, playerEntity)?.value !== true;
  
   const players = useEntityQuery([Has(Player), Has(Position)]).map((entity) => {
     const position = getComponentValueStrict(Position, entity);
+    
     return {
       entity,
       x: position.x,
@@ -57,25 +59,6 @@ export const GameBoard = () => {
  
   return (
     <div>
-      
-      <button
-        type="button"
-        className="bg-stone-800 hover:ring rounded-lg px-4 py-2"
-        onClick={async () => {
-          const toastId = toast.loading("Running away…");
-          await rewardMint();
-          toast.update(toastId, {
-            isLoading: false,
-            type: "default",
-            render: `You ran away!`,
-            autoClose: 5000,
-            closeButton: true,
-          });
-        }}
-      >
-        Reward Mint
-      </button>
-
       <GameMap
         width={width}
         height={height}
@@ -88,6 +71,23 @@ export const GameBoard = () => {
           ) : undefined
         }
       />
+      <button
+        type="button"
+        className="bg-stone-800 hover:ring rounded-lg px-4 py-2 w-full"
+        onClick={async () => {
+          const toastId = toast.loading("Running away…");
+          await rewardMint();
+          toast.update(toastId, {
+            isLoading: false,
+            type: "default",
+            render: `You ran away!`,
+            autoClose: 5000,
+            closeButton: true,
+          });
+        }}
+      >
+        Got a crawn, Reward Mint (ERC721)
+      </button>
 
     </div>
   );
